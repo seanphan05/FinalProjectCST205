@@ -5,11 +5,11 @@ from flask_bootstrap import Bootstrap5
 app = Flask(__name__)
 
 bootstrap = Bootstrap5(app)
-@app.route('/mytemplate')
+@app.route('/MontereyWeatherBroadcast')
 def t_test():
-    return render_template('template1.html', my_info=my_info)
+    return render_template('template1.html')
 
 
-@app.route('/bootstraptemplate')
+@app.route('/PetAdoption')
 def t_test1():
-    return render_template('index.html', my_info=my_info)
+    return render_template('index.html')
