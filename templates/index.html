@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="../static/css/main.css">
 </head>
 <body>
-
+    <p class="main-question">What are you looking for today?</p>
+    <div class="container">
+        <div class="column">
+            <a href="{{ url_for('get_weather') }}">
+                <p class="main-header-1">Monterey Weather Broadcast</p>
+            </a>
+            <img class="main-img-1" src="../static/images/wharf.jpg" alt="Monterey Wharf Image"/>
+        </div>
+        <div class="column">
+            <a href="{{ url_for('get_pet') }}">
+                <p class="main-header-2">Pet Adoption with BTC</p>
+            </a>
+            <img class="main-img-2" src="../static/images/dog3.jpg" alt="Dog Image"/>
+        </div>
+    </div>
 </body>
 </html>

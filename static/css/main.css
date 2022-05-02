@@ -1,0 +1,29 @@
+.main-question {
+    font-size: 50px;
+    text-align: center;
+    color: deepskyblue;
+    font-weight: bold;
+}
+
+.container {
+    background: azure;
+    border: 1px solid lightgoldenrodyellow;
+    width: 1500px;
+    height: 300px;
+}
+
+.column {
+  float: right;
+  width: 48%;
+}
+
+.main-img-1, .main-img-2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.main-header-1, .main-header-2 {
+    text-align: center;
+}
