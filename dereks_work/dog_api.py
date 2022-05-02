@@ -1,19 +1,19 @@
 import requests
 
-query = {'x-api-key':'9520ad95-23c2-4ad2-accf-5b0aae2d3c41'}
-
-def get_cat_url():
-    response = requests.get('https://api.thecatapi.com/v1/images/search', params=query)
+def get_dog_url():
+    response = requests.get('https://dog.ceo/api/breeds/image/random')
 
     if response.status_code == 200:
 
         print(response)
         print(response.json())
 
-        return response.json().get('url')
+        return response.json().get('message')
 
     else:
         print(f'Something went wrong: Status code {response.status_code}')
 
         return str(response.status_code)
 
+if __name__ == '__main__':
+    get_dog_url()
