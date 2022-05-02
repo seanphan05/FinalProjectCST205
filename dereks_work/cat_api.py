@@ -10,10 +10,12 @@ def get_cat_url():
         print(response)
         print(response.json())
 
-        return response.json().get('url')
+        return response.json()[0].get('url')
 
     else:
         print(f'Something went wrong: Status code {response.status_code}')
 
         return str(response.status_code)
 
+if __name__ == '__main__':
+    print(get_cat_url())

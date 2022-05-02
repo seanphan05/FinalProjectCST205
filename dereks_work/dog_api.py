@@ -16,4 +16,4 @@ def get_dog_url():
         return str(response.status_code)
 
 if __name__ == '__main__':
-    get_dog_url()
+    print(get_dog_url())
