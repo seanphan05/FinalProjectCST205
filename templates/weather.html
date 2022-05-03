@@ -3,8 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Monterey Weather Broadcast</title>
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet" href="../static/css/weather.css">
 </head>
 <body>
-
+    <header>
+        <a href="{{ url_for('t_test0') }}">Home</a>
+        <a href="{{ url_for('get_pet') }}">
+            <p class="main-header-2">Pet Adoption with BTC</p>
+        </a>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>{{ data['weather'][0]['description'].title() }} in {{ data['name'] }}, {{ data['sys']['country'] }}</h1>
+                <h2>Current Temp: {{ data['main']['temp'] }}&deg;F</h2>
+                <h3>Feels Like: {{ data['main']['feels_like'] }}&deg;F</h3>
+                <h3>High: {{ data['main']['temp_max'] }}&deg;F</h3>
+                <h3>Low: {{ data['main']['temp_min'] }}&deg;F</h3>
+                <h3>Humidity: {{ data['main']['humidity'] }}%</h3>
+                <br>
+                <h3>Wind Speed: {{ data['wind']['speed'] }}mph</h3>
+                <h3>Gusts: {{ data['wind']['gust'] }}mph</h3>
+                <h3>Direction: {{ data['wind']['deg'] }}&deg;</h3>
+            </div>
+            <div class="col">
+                <img src="../static/images/wharf.jpg" width="700">
+            </div>
+        </div>
+    </div>
 </body>
 </html>

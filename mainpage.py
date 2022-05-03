@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
-
+from colby_work import weather
 # create an instance of Flask
 app = Flask(__name__)
 
@@ -11,7 +11,8 @@ def t_test0():
 
 @app.route('/MontereyWeatherBroadcast')
 def get_weather():
-    return render_template('weather.html')
+    data = weather.get_monterey_weather()
+    return render_template('weather.html', data=data)
 
 @app.route('/PetAdoption')
 def get_pet():
