@@ -8,8 +8,8 @@
 .container {
     background: azure;
     border: 1px solid lightgoldenrodyellow;
-    width: 1500px;
-    height: 300px;
+    width: 100%;
+    height: 500px;
 }
 
 .column {
@@ -26,4 +26,5 @@
 
 .main-header-1, .main-header-2 {
     text-align: center;
+    font-size: 30px;
 }
