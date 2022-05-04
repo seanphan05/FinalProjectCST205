@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
+from dereks_work.pet_api_main import get_cat_dog_url_and_prices
 
 # create an instance of Flask
 app = Flask(__name__)
@@ -15,4 +16,4 @@ def get_weather():
 
 @app.route('/PetAdoption')
 def get_pet():
-    return render_template('animal.html')
+    return render_template('animal.html', pet_info=get_cat_dog_url_and_prices(5, use_test_data=True))
