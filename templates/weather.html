@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Monterey Weather Broadcast</title>
-    {{ bootstrap.load_css() }}
     <link rel="stylesheet" href="../static/css/weather.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
 <p class="main-nav"><a href="{{ url_for('get_homepage') }}">Home</a> | <a href="{{ url_for('get_weather') }}">Weather Broadcast</a> | <a href="{{ url_for('get_pet') }}">Pet Adoption Page</a></p>
 <div class="container">
     <div class="image-section">
         <div class ="navigator">
-            <button type="button" id ="change_image">Change Image</button>
-            <select class="filter" name="filter" method="GET" action="/">
-                {% for filter in filters %}
-                <option value= "{{filter}}" SELECTED>{{filter}}</option>"
-                {% endfor %}
-            </select>
+            <button type="button" id="change_image">Change Image</button>
+            <form id="filter_form" method="POST" action="{{ url_for('apply_filter') }}">
+                <select class="filter" id="filter" name="filter">
+                    <option value="none" selected disabled hidden>Select a Filter</option>
+                    {% for filter in filters %}
+                    <option value= "{{filter}}" >{{filter}}</option>"
+                    {% endfor %}
+                </select>
+            </form>
+
         </div>
-        <div class="weather-image">
-            <img id="weather_img" src='../static/images/{{ image_dict[0]["Name"] }}.jpg' alt="{{ image_dict[0]['Title'] }}" width="100%" height="80%"/>
+        <div class="weather-image" style="visibility: visible">
+            <img id="weather-img" src='../static/images/{{ image_dict[0]["Name"] }}.jpg' alt="{{ image_dict[0]['Title'] }}" width="100%" height="80%"/>
         </div>
     </div>
     <div class="info-section">
@@ -41,16 +45,17 @@
                 Weather Condition: 
                 <span id="weather_desc">{{ data['weather'][0]['description'] }}</span>, with 
                 <span id="wind_speed">{{ data['wind']['speed'] }}</span>mph winds from the 
-                <span id="wind_dir">{{ data['wind']['dir'] }}</span>
+                <span id="wind_dir">{{ data['wind']['dir'] }}</span>.
             </span>
         </div>
         <div class="traffic-icon-section">
             <img class="icon" src="../static/images/icon3.jpg" alt="Traffic Icon"><span>Traffic Condition</span>
         </div>
         <div class="fun-fact">
-            <p id="image_info">{{ image_dict[0]['Description'] }}</p>
+            <p id="image-info">{{ image_dict[0]['Description'] }}</p>
         </div>
     </div>
+</div>
 </body>
 <script>
         $(document).ready(function() {
@@ -59,13 +64,34 @@
                    url: "{{ url_for ('change_image') }}",
                    type: "GET",
                    success: function(response) {
-                       $("#weather_img").attr("src", "../static/images/" + response["Name"] + ".jpg");
-                       $("#weather_img").attr("alt", response["Title"]);
-                       $("#image_info").html(response["Description"]);
+                       $("#weather-img").attr("src", "../static/images/" + response["Name"] + ".jpg");
+                       $("#weather-img").attr("alt", response["Title"]);
+                       $("#image-info").html(response["Description"]);
                   },
              });
            });
-           $('#update_info').click(function() {
+        });
+
+        $(document).ready(function() {
+          $('#filter').change(function(){
+            var filter = $("#filter").val();
+            $.ajax({
+              url : "{{ url_for('apply_filter') }}",
+              type: 'POST',
+              dataType: "html",
+              contentType: 'application/json',
+              data: JSON.stringify({
+                "Filter": filter,
+                }),
+              success: function(response) {
+                  $("#weather-img").attr("src", "../" + response)
+              },
+            });
+          });
+        });
+
+        $(document).ready(function() {
+            $('#update_info').click(function() {
                 $.ajax({
                     url: "{{ url_for('update_info') }}",
                     type: "GET",
