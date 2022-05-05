@@ -1,0 +1,62 @@
+.weather-image {
+  display: block;
+  padding: 10px;
+  margin: 10px;
+  object-fit: cover;
+  width: 800px;
+  height: 800px;
+  float: left;
+}
+
+.image-section {
+  float: left;
+  width: 45%;
+  padding: 10px;
+  margin: 10px;
+}
+
+.info-section {
+  float: right;
+  width: 45%;
+  margin-top: 10px;
+}
+
+.navigator {
+  padding: 10px;
+  margin: 10px;
+}
+
+.main-nav {
+  padding-left: 45px;
+  font-size: 20px;
+}
+
+#change_image {
+  float: left;
+}
+
+.filter {
+  float: right;
+  margin-right: 200px;
+}
+
+.update-info, .temp-icon-section, .weather-icon-section, .traffic-icon-section, .fun-fact{
+  display: block;
+  float: left;
+  width: 80%;
+  padding: 30px;
+  mardin: 20px;
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+}
+
+.fun-fact {
+  border-style: double;
+  border-width: 10px;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+}
