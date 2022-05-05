@@ -7,30 +7,78 @@
     <link rel="stylesheet" href="../static/css/weather.css">
 </head>
 <body>
-    <header>
-        <a href="{{ url_for('t_test0') }}">Home</a>
-        <a href="{{ url_for('get_pet') }}">
-            <p class="main-header-2">Pet Adoption with BTC</p>
-        </a>
-    </header>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>{{ data['weather'][0]['description'].title() }} in {{ data['name'] }}, {{ data['sys']['country'] }}</h1>
-                <h2>Current Temp: {{ data['main']['temp'] }}&deg;F</h2>
-                <h3>Feels Like: {{ data['main']['feels_like'] }}&deg;F</h3>
-                <h3>High: {{ data['main']['temp_max'] }}&deg;F</h3>
-                <h3>Low: {{ data['main']['temp_min'] }}&deg;F</h3>
-                <h3>Humidity: {{ data['main']['humidity'] }}%</h3>
-                <br>
-                <h3>Wind Speed: {{ data['wind']['speed'] }}mph</h3>
-                <h3>Gusts: {{ data['wind']['gust'] }}mph</h3>
-                <h3>Direction: {{ data['wind']['deg'] }}&deg;</h3>
-            </div>
-            <div class="col">
-                <img src="../static/images/wharf.jpg" width="700">
-            </div>
+<p class="main-nav"><a href="{{ url_for('get_homepage') }}">Home</a> | <a href="{{ url_for('get_weather') }}">Weather Broadcast</a> | <a href="{{ url_for('get_pet') }}">Pet Adoption Page</a></p>
+<div class="container">
+    <div class="image-section">
+        <div class ="navigator">
+            <button type="button" id ="change_image">Change Image</button>
+            <select class="filter" name="filter" method="GET" action="/">
+                {% for filter in filters %}
+                <option value= "{{filter}}" SELECTED>{{filter}}</option>"
+                {% endfor %}
+            </select>
+        </div>
+        <div class="weather-image">
+            <img id="weather_img" src='../static/images/{{ image_dict[0]["Name"] }}.jpg' alt="{{ image_dict[0]['Title'] }}" width="100%" height="80%"/>
+        </div>
+    </div>
+    <div class="info-section">
+        <div class="update-info">
+            <button type="button" id ="update_info">Update Info</button>
+        </div>
+        <div class="temp-icon-section">
+            <img class="icon" src="../static/images/icon1.jpg" alt="Temperature Icon">
+            <span>
+                Temperature: 
+                <span id="main_temp">{{ data['main']['temp'] }}</span>&deg;F, feels like 
+                <span id="feels_like">{{ data['main']['feels_like'] }}</span>&deg;F. Humidity of 
+                <span id="humidity">{{ data['main']['humidity'] }}</span>%.
+            </span>
+        </div>
+        <div class="weather-icon-section">
+            <img class="icon" src="../static/images/icon2.jpg" alt="Weather Icon">
+            <span>
+                Weather Condition: 
+                <span id="weather_desc">{{ data['weather'][0]['description'] }}</span>, with 
+                <span id="wind_speed">{{ data['wind']['speed'] }}</span>mph winds from the 
+                <span id="wind_dir">{{ data['wind']['dir'] }}</span>
+            </span>
+        </div>
+        <div class="traffic-icon-section">
+            <img class="icon" src="../static/images/icon3.jpg" alt="Traffic Icon"><span>Traffic Condition</span>
+        </div>
+        <div class="fun-fact">
+            <p id="image_info">{{ image_dict[0]['Description'] }}</p>
         </div>
     </div>
 </body>
+<script>
+        $(document).ready(function() {
+           $('#change_image').click(function(){
+               $.ajax({
+                   url: "{{ url_for ('change_image') }}",
+                   type: "GET",
+                   success: function(response) {
+                       $("#weather_img").attr("src", "../static/images/" + response["Name"] + ".jpg");
+                       $("#weather_img").attr("alt", response["Title"]);
+                       $("#image_info").html(response["Description"]);
+                  },
+             });
+           });
+           $('#update_info').click(function() {
+                $.ajax({
+                    url: "{{ url_for('update_info') }}",
+                    type: "GET",
+                    success: function(response) {
+                        $("#main_temp").html(response["main"]["temp"]);
+                        $("#feels_like").html(response["main"]["feels_like"]);
+                        $("#humidity").html(response["main"]["humidity"]);
+                        $("#weather_desc").html(response["weather"][0]['description']);
+                        $("#wind_speed").html(response["wind"]["speed"]);
+                        $("#wind_dir").html(response["wind"]["dir"])
+                    },
+                });
+           });
+        });
+    </script>
 </html>
