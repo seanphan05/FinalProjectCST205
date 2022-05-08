@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from image_dict import image_dict
 import random, os , glob
 from PIL import Image
-
+import weather
 
 # create an instance of Flask
 app = Flask(__name__)
@@ -21,7 +21,8 @@ def get_weather():
     random.shuffle(image_dict)
     global current_image
     current_image = image_dict[0]["Name"]
-    return render_template('weather.html', image_dict=image_dict, filters=filters)
+    data = weather.get_monterey_weather()
+    return render_template('weather.html', image_dict=image_dict, filters=filters, data=data)
 
 @app.route('/MontereyWeatherBroadcast/image')
 def change_image():
@@ -71,6 +72,10 @@ def apply_filter():
     else:
         new_path = image_path
     return new_path
+    
+@app.route('/MontereyWeatherBroadcast/update')
+def update_info():
+    return weather.get_monterey_weather()
 
 # Pet Adoption Routes
 @app.route('/PetAdoption')

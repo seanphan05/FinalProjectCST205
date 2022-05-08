@@ -31,10 +31,22 @@
             <button type="button" id ="update_info">Update Info</button>
         </div>
         <div class="temp-icon-section">
-            <img class="icon" src="../static/images/icon1.jpg" alt="Temperature Icon"><span>Temperature</span>
+            <img class="icon" src="../static/images/icon1.jpg" alt="Temperature Icon">
+            <span>
+                Temperature: 
+                <span id="main_temp">{{ data['main']['temp'] }}</span>&deg;F, feels like 
+                <span id="feels_like">{{ data['main']['feels_like'] }}</span>&deg;F. Humidity of 
+                <span id="humidity">{{ data['main']['humidity'] }}</span>%.
+            </span>
         </div>
         <div class="weather-icon-section">
-            <img class="icon" src="../static/images/icon2.jpg" alt="Weather Icon"><span>Weather Condition</span>
+            <img class="icon" src="../static/images/icon2.jpg" alt="Weather Icon">
+            <span>
+                Weather Condition: 
+                <span id="weather_desc">{{ data['weather'][0]['description'] }}</span>, with 
+                <span id="wind_speed">{{ data['wind']['speed'] }}</span>mph winds from the 
+                <span id="wind_dir">{{ data['wind']['dir'] }}</span>.
+            </span>
         </div>
         <div class="traffic-icon-section">
             <img class="icon" src="../static/images/icon3.jpg" alt="Traffic Icon"><span>Traffic Condition</span>
@@ -76,6 +88,23 @@
               },
             });
           });
+        });
+
+        $(document).ready(function() {
+            $('#update_info').click(function() {
+                $.ajax({
+                    url: "{{ url_for('update_info') }}",
+                    type: "GET",
+                    success: function(response) {
+                        $("#main_temp").html(response["main"]["temp"]);
+                        $("#feels_like").html(response["main"]["feels_like"]);
+                        $("#humidity").html(response["main"]["humidity"]);
+                        $("#weather_desc").html(response["weather"][0]['description']);
+                        $("#wind_speed").html(response["wind"]["speed"]);
+                        $("#wind_dir").html(response["wind"]["dir"])
+                    },
+                });
+           });
         });
     </script>
 </html>
