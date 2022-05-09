@@ -1,5 +1,8 @@
-from flask import Flask, render_template
-from flask_bootstrap import Bootstrap5
+from flask import Flask, render_template, request
+from image_dict import image_dict
+import random, os , glob
+from PIL import Image
+import weather
 from dereks_work.pet_api_main import get_cat_dog_url_and_prices
 
 # create an instance of Flask
