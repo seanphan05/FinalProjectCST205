@@ -1,7 +1,13 @@
-from .cat_api import get_cat_url
-from .dog_api import get_dog_url
 import numpy as np
-from .test_data import cat_test_data, dog_test_data
+try:
+    from .cat_api import get_cat_url
+    from .dog_api import get_dog_url
+    from .test_data import cat_test_data, dog_test_data
+except:
+    from cat_api import get_cat_url
+    from dog_api import get_dog_url
+    from test_data import cat_test_data, dog_test_data
+
 
 cat_test_data_copy = cat_test_data.copy()
 dog_test_data_copy = dog_test_data.copy()
@@ -47,6 +53,7 @@ def get_cat_dog_url_and_prices(size: int, use_test_data=True) -> list(list()):
             if use_test_data:
                 num_random_choice_left = len(dog_test_data_copy)
                 random_test_choice = dog_test_data_copy[np.random.randint(num_random_choice_left)]
+                cur_api_result.append(random_test_choice.get('message'))
             else:
                 print('Making dog API call')
                 cur_api_result.append(get_dog_url())
