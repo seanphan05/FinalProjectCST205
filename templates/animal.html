@@ -6,5 +6,17 @@
 </head>
 <body>
 
+    <div>
+        <h1>Adopt and Animal with Crypto!</h1>
+    </div>
+
+    <div>
+        {% for item in pet_info %}
+        
+        <img class="main-img-2" src={{ item[0] }} alt="Pet Image" width="500" height="300"/>
+        <p> Price in USD: {{ item[1] }} </p>
+        {% endfor %}
+    </div>
+
 </body>
 </html>

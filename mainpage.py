@@ -3,6 +3,8 @@ from image_dict import image_dict
 import random, os , glob
 from PIL import Image
 import weather
+from dereks_work.pet_api_main import get_cat_dog_url_and_prices
+
 
 # create an instance of Flask
 app = Flask(__name__)
@@ -80,4 +82,4 @@ def update_info():
 # Pet Adoption Routes
 @app.route('/PetAdoption')
 def get_pet():
-    return render_template('animal.html')
+    return render_template('animal.html', pet_info=get_cat_dog_url_and_prices(5, use_test_data=True))
