@@ -31,25 +31,48 @@
             <button type="button" id ="update_info">Update Info</button>
         </div>
         <div class="temp-icon-section">
-            <img class="icon" src="../static/images/icon1.jpg" alt="Temperature Icon">
-            <span>
-                Temperature: 
-                <span id="main_temp">{{ data['main']['temp'] }}</span>&deg;F, feels like 
-                <span id="feels_like">{{ data['main']['feels_like'] }}</span>&deg;F. Humidity of 
-                <span id="humidity">{{ data['main']['humidity'] }}</span>%.
-            </span>
+            <div class="temp-left">
+                <img class="icon" src="../static/images/icon1.jpg" alt="Temperature Icon">
+            </div>
+            <div class="temp-right">
+                <span>
+                    <span class="weather-title">Temperature</span>
+                    <p>
+                        <span id="main_temp">{{ data['main']['temp'] }} </span><span class="info-hightlight">&deg;F</span>, feels like
+                        <span id="feels_like">{{ data['main']['feels_like'] }} </span><span class="info-hightlight">&deg;F</span>. Humidity of
+                        <span id="humidity">{{ data['main']['humidity'] }} </span><span class="info-hightlight">%</span>.
+                    </p>
+                </span>
+            </div>
         </div>
         <div class="weather-icon-section">
-            <img class="icon" src="../static/images/icon2.jpg" alt="Weather Icon">
-            <span>
-                Weather Condition: 
-                <span id="weather_desc">{{ data['weather'][0]['description'] }}</span>, with 
-                <span id="wind_speed">{{ data['wind']['speed'] }}</span>mph winds from the 
-                <span id="wind_dir">{{ data['wind']['dir'] }}</span>.
-            </span>
+            <div class="weather-left">
+                <img class="icon" src="../static/images/icon2.jpg" alt="Weather Icon">
+            </div>
+            <div class="weather-right">
+                <span>
+                    <span class="weather-title">Weather</span>
+                    <p>
+                        <span id="weather_desc">{{ data['weather'][0]['description'] }} </span>, with
+                        <span id="wind_speed">{{ data['wind']['speed'] }} </span><span class="info-hightlight">mph</span> winds from the
+                        <span id="wind_dir">{{ data['wind']['dir'] }}</span>.
+                    </p>
+                </span>
+            </div>
         </div>
         <div class="traffic-icon-section">
-            <img class="icon" src="../static/images/icon3.jpg" alt="Traffic Icon"><span>Traffic Condition</span>
+            <div class="traffic-left">
+                <img class="icon" src="../static/images/icon3.jpg" alt="Traffic Icon">
+            </div>
+            <div class="traffic-right">
+                <p>
+                    <span class="weather-title">Traffic Condition</span>
+                    <p>Incident Info: <span class="info-hightlight">{{ data['traffic']['description'] }}</span></p>
+                    <p>Incident Level: <span class="info-hightlight">{{ data['traffic']['severity'] }}</span></p>
+                    <p>Incident Type: <span class="info-hightlight"> {{ data['traffic']['incident_type'] }}</span></p>
+                    <p>Road Status: <span class="info-hightlight">{{ data['traffic']['road_closed'] }}</span></p>
+                </span>
+            </div>
         </div>
         <div class="fun-fact">
             <p id="image-info">{{ image_dict[0]['Description'] }}</p>
