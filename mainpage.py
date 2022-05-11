@@ -23,7 +23,7 @@ def get_weather():
     random.shuffle(image_dict)
     global current_image
     current_image = image_dict[0]["Name"]
-    data = weather.get_monterey_weather()
+    data = weather.get_monterey_info()
     return render_template('weather.html', image_dict=image_dict, filters=filters, data=data)
 
 @app.route('/MontereyWeatherBroadcast/image')
@@ -77,7 +77,7 @@ def apply_filter():
     
 @app.route('/MontereyWeatherBroadcast/update')
 def update_info():
-    return weather.get_monterey_weather()
+    return weather.get_monterey_info()
 
 # Pet Adoption Routes
 @app.route('/PetAdoption')

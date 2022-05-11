@@ -1,4 +1,5 @@
 import numpy as np
+import requests
 try:
     from .cat_api import get_cat_url
     from .dog_api import get_dog_url
@@ -35,6 +36,11 @@ def get_cat_dog_url_and_prices(size: int, use_test_data=True) -> list(list()):
     for rand_val in np.random.choice([0,1], size=(size)):
         cur_api_result = []
         random_pet_price = np.random.randint(1000) # 1000 dollars is the max pet price
+
+        # Get BTC rate
+        endpoint = "https://blockchain.info/tobtc?currency=USD&value=" + str(random_pet_price)
+        r = requests.get(endpoint)
+        btc_price = r.json()
         
         # 0 for cat API
         if rand_val == 0: 
@@ -60,14 +66,15 @@ def get_cat_dog_url_and_prices(size: int, use_test_data=True) -> list(list()):
 
             cur_api_result.append(random_pet_price)
 
-        # Adding the results to the total list    
+        # Adding the results to the total list
+        cur_api_result.append(btc_price)
         api_results.append(cur_api_result)
 
     return api_results
 
 if __name__ == '__main__':
-
     results = get_cat_dog_url_and_prices(10)
     print(results)
+
 
 
