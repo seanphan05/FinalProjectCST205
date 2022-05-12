@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Animal Adoption</title>
+    <link rel="stylesheet" href="../static/css/animal.css">
 </head>
 <body>
-
+    <p class="main-nav"><a href="{{ url_for('get_homepage') }}">Home</a> | <a href="{{ url_for('get_weather') }}">Weather Broadcast</a> | <a href="{{ url_for('get_pet') }}">Pet Adoption Page</a></p>
     <div>
-        <h1>Adopt an Animal with Crypto!</h1>
+        <h1 class="main-header-1">Adopt a pet with Crypto!</h1>
     </div>
 
     <div>
         {% for item in pet_info %}
-        
-        <img class="main-img-2" src={{ item[0] }} alt="Pet Image" width="500" height="300"/>
-        <p> Price in USD: {{ item[1] }} </p>
+        <h3 class="main-header-2"> Adopt this {{item['pet_type']}}, {{item['name']}}!</h3>
+        <img class="main-img-2" src={{ item['url'] }} alt="Pet Image" width="500" height="300"/>
+        <p class="crypto-text"> Price in USD: {{ item['USD'] }} </p> 
+        <p class="crypto-text"> Price in Bitcoin: {{ item['Bitcoin'] }}</p> 
+        <p class="crypto-text"> Price in Ethereum: {{ item['Ethereum'] }} </p> 
+        <p class="crypto-text"> Price in Tether: {{item['Tether']}}</p> 
         {% endfor %}
     </div>
 

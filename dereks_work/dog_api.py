@@ -1,6 +1,10 @@
 import requests
 
 def get_dog_url():
+    """
+    Example of an API result
+    {'message': 'https://images.dog.ceo/breeds/shihtzu/n02086240_5546.jpg', 'status': 'success'}
+    """
     response = requests.get('https://dog.ceo/api/breeds/image/random')
 
     if response.status_code == 200:

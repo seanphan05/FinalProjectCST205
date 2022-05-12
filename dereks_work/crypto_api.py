@@ -1,5 +1,6 @@
 import requests
 
+# Example on how to make API request
 #curl --location --request GET 'https://api.coinstats.app/public/v1/coins?skip=0&limit=10'
 
 def get_current_crypto_prices():
