@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../static/css/animal.css">
 </head>
 <body>
+
     <p class="main-nav"><a href="{{ url_for('get_homepage') }}">Home</a> | <a href="{{ url_for('get_weather') }}">Weather Broadcast</a> | <a href="{{ url_for('get_pet') }}">Pet Adoption Page</a></p>
     <div class="header">
         <h1>Adopt an Animal with Crypto!</h1>
@@ -14,19 +15,23 @@
             {% for item in pet_info %}
                 <div class="container">
                     <div class="image-section">
-                        <img class="main-img-2" src="{{ item[0] }}" alt="Pet Image" width="500" height="300"/>
+                        <p> Adopt a {{item['pet_type']}}, named {{item['name']}}</p>
+                        <img class="main-img-2" src="{{ item['url'] }}" alt="Pet Image" width="500" height="300"/>
                     </div>
                     <div class="price-section">
                         <div class="price-block">
                             <img class="icon" src="../static/images/dollar-icon.jpg" alt="Dollar Icon">
-                            <p> Price in USD: <span class="price-highlight">{{ item[1] }}</span> </p>
+                            <p> Price in USD: <span class="price-highlight">{{ item['USD'] }}</span> </p>
                         </div>
                         <div class="price-block">
                             <img class="icon" src="../static/images/bitcoin-icon.jpg" alt="Bitcoin Icon">
-                            <p> Price in BTC: <span class="price-highlight">{{ item[2] }}</span> </p>
+                            <p> Price in BTC: <span class="price-highlight">{{ item['Bitcoin'] }}</span> </p>
+                        </div>
+                        <div class="price-block">
+                            <p> Price in Ethereum: <span class="price-highlight">{{ item['Ethereum'] }}</span> </p>
+                            <p> Price in Ethereum: <span class="price-highlight">{{ item['Tether'] }}</span> </p>
                         </div>
                     </div>
-
                 </div>
             {% endfor %}
         </div>
