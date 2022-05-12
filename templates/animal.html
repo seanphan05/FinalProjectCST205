@@ -15,7 +15,7 @@
             {% for item in pet_info %}
                 <div class="container">
                     <div class="image-section">
-                        <p> Adopt a {{item['pet_type']}}, named {{item['name']}}</p>
+                        <p style="font-size: x-large"> Adopt a {{item['pet_type']}}, named {{item['name']}}</p>
                         <img class="main-img-2" src="{{ item['url'] }}" alt="Pet Image" width="500" height="300"/>
                     </div>
                     <div class="price-section">
@@ -25,11 +25,9 @@
                         </div>
                         <div class="price-block">
                             <img class="icon" src="../static/images/bitcoin-icon.jpg" alt="Bitcoin Icon">
-                            <p> Price in BTC: <span class="price-highlight">{{ item['Bitcoin'] }}</span> </p>
-                        </div>
-                        <div class="price-block">
-                            <p> Price in Ethereum: <span class="price-highlight">{{ item['Ethereum'] }}</span> </p>
-                            <p> Price in Ethereum: <span class="price-highlight">{{ item['Tether'] }}</span> </p>
+                            <p> Price in BTC: <span class="price-highlight">{{ item['Bitcoin'] }}</span> </p> 
+                            <p> Price in Ethereum: <span class="price-highlight"> {{ item['Ethereum'] }} </span> </p>
+                            <p> Price in Tether: <span class="price-highlight">{{ item['Tether'] }}</span> </p>
                         </div>
                     </div>
                 </div>
