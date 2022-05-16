@@ -2,7 +2,7 @@ import requests
 import math
 api_key = '5758fb87d0125025a8e357c34f764643'
 bing_key = 'Am7F2ze1ur7AiRfHCja5K5BcRlWU0YrFUOTkPuPkADEWkz2w139sYjoKge6D1bJw'
-
+monterey_coords = None
 def get_monterey_info():
     endpoint = 'https://api.openweathermap.org/data/2.5/weather'
     coords = get_monterey_coords()
@@ -23,22 +23,26 @@ def get_monterey_info():
     except:
         print('failed')
 
-
 def get_monterey_coords():
-    endpoint = 'http://api.openweathermap.org/geo/1.0/direct'
+    global monterey_coords
+    if monterey_coords is None:
+        endpoint = 'http://api.openweathermap.org/geo/1.0/direct'
 
-    payload = {
-        'q': 'Monterey,CA,US',
-        'appid': api_key,
-        'limit': 1
-    }
+        payload = {
+            'q': 'Monterey,CA,US',
+            'appid': api_key,
+            'limit': 1
+        }
 
-    try:
-        r = requests.get(endpoint, params=payload)
-        data = r.json()
-        return {'lat': data[0]['lat'], 'lon': data[0]['lon']}
-    except:
-        print('failed')
+        try:
+            r = requests.get(endpoint, params=payload)
+            data = r.json()
+            monterey_coords = {'lat': data[0]['lat'], 'lon': data[0]['lon']}
+            return monterey_coords
+        except:
+            print('failed')
+    else:
+        return monterey_coords
 
 
 def get_wind_direction(data):
@@ -64,8 +68,8 @@ def get_wind_direction(data):
 def get_traffic_condition():
     # Create bounding box for traffic api
     # latitude and longitute of Monterey center
-    latitude = 36.585748570870585
-    longitude = -121.91417070420516
+    coords = get_monterey_coords()
+    latitude, longitude = coords['lat'], coords['lon']
     # Km distance: 100km
     offset = (1.0 / 1000.0) * 100
 
