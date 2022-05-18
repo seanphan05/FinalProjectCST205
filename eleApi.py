@@ -1,4 +1,7 @@
-
+#Course: CST 205
+#Title: Elephan API
+#Abstract: Flask Application using Elephant API
+#Date: 05/18/2022
 from flask import Flask, render_template, jsonify
 import requests,json
 from requests import Request, Session
@@ -9,7 +12,7 @@ from pprint import pprint
 app = Flask(__name__)
 
 
-
+#Flask App
 @app.route('/elephant', methods=['GET'])
 def hello():
     endpoint = 'https://elephant-api.herokuapp.com/elephants'
