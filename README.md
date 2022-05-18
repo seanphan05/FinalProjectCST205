@@ -7,18 +7,18 @@
 <li>Liliana Valencia</li> 
 
 <br>
-<b>Class:</b> CST 205-01 SP22
+<b>Class:</b> CST 205-01 SP22\
 
 <br>
-<b>Date:</b> May 18 2022
+<b>Date:</b> May 18 2022\
 
 <br>
 <b>How to run:</b>
 This project is written using Python and using Flask lib to create a web application.
-To run this web application, we can initiate the flask in system intepreter (powershell or cmd) and run the mainpage.py file
+To run this web application, we can initiate the flask in system intepreter (powershell or cmd) and run the mainpage.py file\
 
 <br>
-<b>GitHub repository link:</b> https://github.com/seanphan05/FinalProjectCST205.git
+<b>GitHub repository link:</b> https://github.com/seanphan05/FinalProjectCST205.git \
 
 <br>
 <b>Future Objective:</b>
