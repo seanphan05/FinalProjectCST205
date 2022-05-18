@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 
 #Flask App
-@app.route('/elephant', methods=['GET'])
+@app.route('/', methods=['GET'])
 def hello():
     endpoint = 'https://elephant-api.herokuapp.com/elephants'
     r = requests.get(endpoint)
