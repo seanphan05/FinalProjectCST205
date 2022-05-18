@@ -121,4 +121,4 @@ def update_info():
 # Pet Adoption Routes
 @app.route('/PetAdoption')
 def get_pet():
-    return render_template('animal.html', pet_info=get_cat_dog_url_and_prices(5, use_test_data=True))
+    return render_template('animal.html', pet_info=get_cat_dog_url_and_prices(5, use_test_data=False))

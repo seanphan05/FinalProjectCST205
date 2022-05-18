@@ -1,18 +1,20 @@
 import requests
 
 def get_dog_url():
-    response = requests.get('https://dog.ceo/api/breeds/image/random')
+    """
+    This function makes an API request and returns a URL for a random image of a dog
+    """
+    url = 'https://dog.ceo/api/breeds/image/random'
 
+    response = requests.get(url) # Make an API request
+
+    # If the api request was successful, return the URL for the dog image
     if response.status_code == 200:
-
-        print(response)
-        print(response.json())
-
         return response.json().get('message')
 
+    # If the api went wrong, print out an error and return the status code
     else:
         print(f'Something went wrong: Status code {response.status_code}')
-
         return str(response.status_code)
 
 if __name__ == '__main__':
