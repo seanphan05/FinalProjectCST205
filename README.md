@@ -18,7 +18,8 @@ This project is written using Python and using Flask lib to create a web applica
 To run this web application, we can initiate the flask in system intepreter (powershell or cmd) and run the mainpage.py file
 
 <br><br>
-<b>GitHub repository link:</b> https://github.com/seanphan05/FinalProjectCST205.git 
+<b>GitHub repository link:</b> https://github.com/seanphan05/FinalProjectCST205.git
+<br>
 <b>Trello Board link:</b> https://trello.com/b/8I0AA2cC/final-project-cst205
 
 <br><br>
