@@ -1,3 +1,42 @@
+#######################################################
+"""
+Course: CST 205 Multimedia Design & Programming
+
+Title: Web Application to Broadcast Monterey Weather and Traffic Condition, Webpage for Pet Adoption
+
+Author:
+Trung Phan
+Derek Lilienthal
+Colby Medeiros
+Liliana Valencia
+
+Date: Apr 27 2022
+
+Responsibility
+Trung Phan:
+- Web application mockup design
+- Web application front-end development (Weather Broadcast Page and Pet Adoption Page)
+- Weather Broadcast Traffic API, Image Filters, Button functions
+- Project Document
+Derek Lilienthal:
+- Pet API, Pet adoption page developement
+- Crypto currency API
+Colby Medeiros:
+- Weather Broadcast API
+Liliana Valencia
+- Elephant API and Page
+
+Source:
+- http://dev.virtualearth.net
+- http://api.openweathermap.org
+- https://api.coinstats.app
+- https://dog.ceo
+- https://api.thecatapi.com
+- https://elephant-api.herokuapp.com
+- Google Images and wikipedia
+"""
+#######################################################
+
 from flask import Flask, render_template, request
 from image_dict import image_dict
 import random, os , glob
