@@ -1,3 +1,6 @@
+### This file contains some sample API's to be used for testing purposes
+### and also contains a list of random names used for pets
+
 dog_test_data = [
     {'message': 'https://images.dog.ceo/breeds/shihtzu/n02086240_5546.jpg', 'status': 'success'},
     {'message': 'https://images.dog.ceo/breeds/germanshepherd/n02106662_855.jpg', 'status': 'success'},

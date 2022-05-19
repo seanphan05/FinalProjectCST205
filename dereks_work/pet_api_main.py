@@ -1,6 +1,6 @@
 
 import numpy as np
-try:
+try: # Try catches were needed for testing this file outside of the root directory
     from .cat_api import get_cat_url
     from .dog_api import get_dog_url
     from .test_data import cat_test_data, dog_test_data, random_names
@@ -11,7 +11,7 @@ except:
     from test_data import cat_test_data, dog_test_data, random_names
     from crypto_api import get_current_crypto_prices
 
-
+# Making a copy of the test data instead of modifying the original
 cat_test_data_copy = cat_test_data.copy()
 dog_test_data_copy = dog_test_data.copy()
 
@@ -45,7 +45,7 @@ def get_cat_dog_url_and_prices(size: int, use_test_data=True) -> list(list()):
         cur_api_result = {}
         random_pet_price = np.random.randint(1000) # 1000 dollars is the max pet price
 
-        # Get BTC rate
+        # Get BTC rate (old api)
         # endpoint = "https://blockchain.info/tobtc?currency=USD&value=" + str(random_pet_price)
         # r = requests.get(endpoint)
         # btc_price = r.json()
@@ -82,11 +82,11 @@ def get_cat_dog_url_and_prices(size: int, use_test_data=True) -> list(list()):
             cur_api_result[key] = random_pet_price / val
 
         # Adding the results to the total list
-        #cur_api_result.append(btc_price)
         api_results.append(cur_api_result)
 
     return api_results
 
+# Testing the functionality
 if __name__ == '__main__':
     results = get_cat_dog_url_and_prices(10)
     print(results)
